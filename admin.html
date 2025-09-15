@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Community Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Protect admin page: redirect if not logged in
+    if (!sessionStorage.getItem("adminLoggedIn")) {
+      alert("Please login first!");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body class="skyblue"> <!-- Changed body color to sky blue for consistency -->
+  <header>
+    <h1>Admin Panel - Community Hub</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="training.html">Training</a>
+      <a href="register.html">Register</a>
+      <a href="mentorship.html">Mentorship</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="admin-section">
+      <h2>Registered Participants</h2>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Users will be dynamically added here -->
+        </tbody>
+      </table>
+      <button id="clearAll">Clear All Users</button>
+      <button id="logout">Logout</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Community Hub | All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Load registered users
+    function loadUsers() {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const tableBody = document.querySelector('#usersTable tbody');
+      tableBody.innerHTML = '';
+
+      users.forEach((user, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td>${user.course}</td>
+          <td><button onclick="deleteUser(${index})">Delete</button></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Delete a single user
+    function deleteUser(index) {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      users.splice(index, 1);
+      localStorage.setItem('users', JSON.stringify(users));
+      loadUsers();
+    }
+
+    // Clear all users
+    document.getElementById('clearAll').addEventListener('click', () => {
+      if(confirm('Are you sure you want to delete all users?')) {
+        localStorage.removeItem('users');
+        loadUsers();
+      }
+    });
+
+    // Logout admin
+    document.getElementById('logout').addEventListener('click', () => {
+      sessionStorage.removeItem("adminLoggedIn");
+      window.location.href = "login.html";
+    });
+
+    // Load users on page load
+    window.onload = loadUsers;
+  </script>
+</body>
+</html>

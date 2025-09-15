@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Community Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pink">
+  <header>
+    <h1>Community Digital & Career Skills Hub</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="training.html">Training</a>
+      <a href="register.html">Register</a>
+      <a href="mentorship.html">Mentorship</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Admin Login</h2>
+      <p>Enter your credentials to access the admin dashboard.</p>
+    </section>
+
+    <section class="form-section">
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Community Hub | All rights reserved</p>
+  </footer>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+
+    // Preset admin credentials
+    const ADMIN_USERNAME = "admin";
+    const ADMIN_PASSWORD = "12345";
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent page refresh
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        // Set sessionStorage to allow access to admin page
+        sessionStorage.setItem("adminLoggedIn", "true");
+
+        alert("Login successful!");
+        window.location.href = "admin.html"; // Redirect after login
+      } else {
+        alert("Invalid username or password.");
+        loginForm.reset();
+      }
+    });
+  </script>
+</body>
+</html>

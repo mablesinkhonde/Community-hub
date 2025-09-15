@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training Courses - Community Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="blue">
+  <header>
+    <h1>Community Digital & Career Skills Hub</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="training.html">Training</a>
+      <a href="register.html">Register</a>
+      <a href="mentorship.html">Mentorship</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Our Training Programs</h2>
+      <p>Explore our digital and career skills courses designed to boost your employability and entrepreneurship capabilities.</p>
+    </section>
+
+    <section class="filter">
+      <input type="text" id="search" placeholder="Search courses..." />
+      <div class="category-buttons">
+        <button onclick="filterCategory('All')">All</button>
+        <button onclick="filterCategory('Digital')">Digital</button>
+        <button onclick="filterCategory('Soft Skills')">Soft Skills</button>
+        <button onclick="filterCategory('Entrepreneurship')">Entrepreneurship</button>
+      </div>
+    </section>
+
+    <section class="courses" id="coursesList">
+      <!-- Courses loaded dynamically -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Community Hub | All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const courses = [
+      { title: "Digital Literacy & Computer Basics", description: "Learn essential computer skills and digital literacy to thrive in the modern workplace.", img: "https://via.placeholder.com/300x150?text=Digital+Literacy", category: "Digital" },
+      { title: "Microsoft Office & Productivity Tools", description: "Master Word, Excel, PowerPoint and other tools to boost productivity.", img: "https://via.placeholder.com/300x150?text=MS+Office", category: "Digital" },
+      { title: "Web Development (HTML, CSS, JS)", description: "Build websites from scratch using HTML, CSS, and JavaScript.", img: "https://via.placeholder.com/300x150?text=Web+Dev", category: "Digital" },
+      { title: "Entrepreneurship & Business Skills", description: "Learn how to start a business, manage finances, and develop an entrepreneurial mindset.", img: "https://via.placeholder.com/300x150?text=Entrepreneurship", category: "Entrepreneurship" },
+      { title: "Career Readiness & Soft Skills", description: "Improve communication, teamwork, time management, and other essential career skills.", img: "https://via.placeholder.com/300x150?text=Soft+Skills", category: "Soft Skills" }
+    ];
+
+    const coursesList = document.getElementById('coursesList');
+    const searchInput = document.getElementById('search');
+
+    function displayCourses(filteredCourses) {
+      coursesList.innerHTML = '';
+      filteredCourses.forEach(course => {
+        const courseDiv = document.createElement('div');
+        courseDiv.className = 'course';
+        courseDiv.innerHTML = `
+          <img src="${course.img}" alt="${course.title}">
+          <h3>${course.title}</h3>
+          <p>${course.description}</p>
+          <button onclick="enroll('${course.title}')">Enroll</button>
+        `;
+        coursesList.appendChild(courseDiv);
+      });
+    }
+
+    function enroll(courseTitle) {
+      window.location.href = `register.html?course=${encodeURIComponent(courseTitle)}`;
+    }
+
+    // Search filter
+    searchInput.addEventListener('input', function() {
+      const searchText = searchInput.value.toLowerCase();
+      const filtered = courses.filter(course =>
+        (course.title.toLowerCase().includes(searchText) || course.description.toLowerCase().includes(searchText))
+      );
+      displayCourses(filtered);
+    });
+
+    // Category filter
+    function filterCategory(category) {
+      if(category === "All") {
+        displayCourses(courses);
+      } else {
+        const filtered = courses.filter(course => course.category === category);
+        displayCourses(filtered);
+      }
+    }
+
+    // Initial display
+    displayCourses(courses);
+  </script>
+</body>
+</html>
