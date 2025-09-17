@@ -44,14 +44,13 @@
     <p>&copy; 2025 Community Hub | All rights reserved</p>
   </footer>
 
-  <script src="script.js"></script>
   <script>
     const courses = [
-      { title: "Digital Literacy & Computer Basics", description: "Learn essential computer skills and digital literacy to thrive in the modern workplace.", img: "https://via.placeholder.com/300x150?text=Digital+Literacy", category: "Digital" },
-      { title: "Microsoft Office & Productivity Tools", description: "Master Word, Excel, PowerPoint and other tools to boost productivity.", img: "https://via.placeholder.com/300x150?text=MS+Office", category: "Digital" },
-      { title: "Web Development (HTML, CSS, JS)", description: "Build websites from scratch using HTML, CSS, and JavaScript.", img: "https://via.placeholder.com/300x150?text=Web+Dev", category: "Digital" },
-      { title: "Entrepreneurship & Business Skills", description: "Learn how to start a business, manage finances, and develop an entrepreneurial mindset.", img: "https://via.placeholder.com/300x150?text=Entrepreneurship", category: "Entrepreneurship" },
-      { title: "Career Readiness & Soft Skills", description: "Improve communication, teamwork, time management, and other essential career skills.", img: "https://via.placeholder.com/300x150?text=Soft+Skills", category: "Soft Skills" }
+      { title: "Digital Literacy & Computer Basics", description: "Learn essential computer skills and digital literacy to thrive in the modern workplace.", img: "https://via.placeholder.com/300x150?text=Digital+Literacy", category: "Digital", page: "course1.html" },
+      { title: "Microsoft Office & Productivity Tools", description: "Master Word, Excel, PowerPoint and other tools to boost productivity.", img: "https://via.placeholder.com/300x150?text=MS+Office", category: "Digital", page: "course2.html" },
+      { title: "Web Development (HTML, CSS, JS)", description: "Build websites from scratch using HTML, CSS, and JavaScript.", img: "https://via.placeholder.com/300x150?text=Web+Dev", category: "Digital", page: "course3.html" },
+      { title: "Entrepreneurship & Business Skills", description: "Learn how to start a business, manage finances, and develop an entrepreneurial mindset.", img: "https://via.placeholder.com/300x150?text=Entrepreneurship", category: "Entrepreneurship", page: "course4.html" },
+      { title: "Career Readiness & Soft Skills", description: "Improve communication, teamwork, time management, and other essential career skills.", img: "https://via.placeholder.com/300x150?text=Soft+Skills", category: "Soft Skills", page: "course5.html" }
     ];
 
     const coursesList = document.getElementById('coursesList');
@@ -66,14 +65,15 @@
           <img src="${course.img}" alt="${course.title}">
           <h3>${course.title}</h3>
           <p>${course.description}</p>
-          <button onclick="enroll('${course.title}')">Enroll</button>
+          <button onclick="enroll('${course.page}', '${course.title}')">Enroll</button>
         `;
         coursesList.appendChild(courseDiv);
       });
     }
 
-    function enroll(courseTitle) {
-      window.location.href = `register.html?course=${encodeURIComponent(courseTitle)}`;
+    function enroll(page, courseTitle) {
+      // Go to register.html first, passing course info
+      window.location.href = `register.html?course=${encodeURIComponent(courseTitle)}&page=${encodeURIComponent(page)}`;
     }
 
     // Search filter

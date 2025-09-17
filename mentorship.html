@@ -13,7 +13,7 @@
       <a href="index.html">Home</a>
       <a href="training.html">Training</a>
       <a href="register.html">Register</a>
-      <a href="mentorship.html">Mentorship</a>
+      <a href="mentorship.html" class="active">Mentorship</a>
       <a href="feedback.html">Feedback</a>
     </nav>
   </header>
@@ -21,16 +21,63 @@
   <main>
     <section class="intro">
       <h2>Mentorship Program</h2>
-      <p>Get guidance from experienced mentors in digital skills, entrepreneurship, and career growth.</p>
+      <p>Get guidance from experienced mentors in digital skills, entrepreneurship, and career growth. 
+      Connect with mentors during live sessions, reach out via email, or call directly for advice.</p>
     </section>
 
     <section class="mentors">
       <h2>Meet Our Mentors</h2>
       <ul>
-        <li>Jane Doe – Web Development & Digital Marketing</li>
-        <li>John Smith – Entrepreneurship & Business Planning</li>
-        <li>Mary Johnson – Career Guidance & Soft Skills</li>
+        <li>
+          <strong>Upile Chingolo</strong> – Web Development & Digital Marketing <br>
+          📧 <a href="mailto:upile@example.com">upile@example.com</a> | 
+          📞 <a href="tel:+265998765434">0998 765 434</a> <br>
+          🎥 <a href="https://meet.google.com/example-upile" target="_blank">Join Live Session</a>
+        </li><br>
+
+        <li>
+          <strong>Mable Sinkhonde</strong> – Entrepreneurship & Business Planning <br>
+          📧 <a href="mailto:mable@example.com">mable@example.com</a> | 
+          📞 <a href="tel:+26588776635">0887 766 35</a> <br>
+          🎥 <a href="https://meet.google.com/example-mable" target="_blank">Join Live Session</a>
+        </li><br>
+
+        <li>
+          <strong>Lyser</strong> – Career Guidance & Soft Skills <br>
+          📧 <a href="mailto:lyser@example.com">lyser@example.com</a> | 
+          📞 <a href="tel:+265896363566">0896 363 566</a> <br>
+          🎥 <a href="https://meet.google.com/example-lyser" target="_blank">Join Live Session</a>
+        </li>
       </ul>
+    </section>
+
+    <section class="become-mentor">
+      <h2>Want to Become a Mentor?</h2>
+      <p>We’re always looking for experienced professionals to guide the next generation of learners. 
+      If you’d like to share your knowledge, apply to join our mentorship program.</p>
+    </section>
+
+    <!-- Mentor Application Form -->
+    <section class="mentor-form">
+      <h2>Apply to Be a Mentor</h2>
+      <form action="submit-mentor.php" method="POST">
+        <label for="fullname">Full Name:</label><br>
+        <input type="text" id="fullname" name="fullname" required><br><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <label for="expertise">Area of Expertise:</label><br>
+        <input type="text" id="expertise" name="expertise" placeholder="e.g., Web Development, Business Planning" required><br><br>
+
+        <label for="experience">Brief Experience Summary:</label><br>
+        <textarea id="experience" name="experience" rows="4" placeholder="Tell us about your experience" required></textarea><br><br>
+
+        <button type="submit">Submit Application</button>
+      </form>
     </section>
   </main>
 

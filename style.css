@@ -1,5 +1,4 @@
 /* ------------------ General Styles ------------------ */
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,7 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   color: #333;
-  background-color: #c3d6d4; /* Light blue background */
+  background-color: #87CEEB; /* Light blue background */
 }
 
 /* Page background variations */
@@ -210,7 +209,6 @@ footer {
   padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
-  flex-direction: column;
   transition: background-color 0.2s;
   font-size: 14px;
 }
