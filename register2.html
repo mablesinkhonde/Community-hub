@@ -2,94 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register - Community Hub</title>
+  <title>User Registration - Community Hub</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("userRegisterForm");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Capture values
+        const name = document.getElementById("regName").value;
+        const email = document.getElementById("regEmail").value;
+        const password = document.getElementById("regPassword").value;
+
+        // Save user to localStorage (simulate database)
+        const user = { name, email, password };
+        localStorage.setItem("communityHubUser", JSON.stringify(user));
+
+        alert("Registration successful! Please login to continue.");
+
+        // Redirect to login page
+        window.location.href = "user_login.html";
+      });
+    });
+  </script>
 </head>
-<body>
+<body class="blue">
   <header>
-    <h1>Community Digital & Career Skills Hub</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="training.html">Training</a>
-      <a href="register.html">Register</a>
-      <a href="mentorship.html">Mentorship</a>
-      <a href="feedback.html">Feedback</a>
-      <a href="admin.html">Admin</a>
-    </nav>
+    <h1>Join the Community Hub</h1>
   </header>
 
   <main>
-    <section class="intro">
-      <h2>Register for a Course</h2>
-      <p>Fill in your details to enroll in a course and boost your skills!</p>
-    </section>
+    <section>
+      <h2>Create an Account</h2>
+      <form id="userRegisterForm">
+        <label for="regName">Full Name:</label>
+        <input type="text" id="regName" required>
 
-    <section class="form-section">
-      <form id="registerForm">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your full name" required>
+        <label for="regEmail">Email:</label>
+        <input type="email" id="regEmail" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-
-        <label for="course">Select Course</label>
-        <select id="course" required>
-          <option value="">-- Choose a course --</option>
-          <option value="Digital Literacy & Computer Basics">Digital Literacy & Computer Basics</option>
-          <option value="Microsoft Office & Productivity Tools">Microsoft Office & Productivity Tools</option>
-          <option value="Web Development (HTML, CSS, JS)">Web Development (HTML, CSS, JS)</option>
-          <option value="Entrepreneurship & Business Skills">Entrepreneurship & Business Skills</option>
-          <option value="Career Readiness & Soft Skills">Career Readiness & Soft Skills</option>
-        </select>
+        <label for="regPassword">Password:</label>
+        <input type="password" id="regPassword" required minlength="6">
 
         <button type="submit">Register</button>
       </form>
-
-      <!-- Success message placeholder -->
-      <p id="successMessage" style="color: green; margin-top: 10px;"></p>
+      <p>Already have an account? <a href="user_login.html">Login here</a></p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Community Hub | All rights reserved</p>
+    <p>&copy; 2025 Community Hub</p>
   </footer>
-
-  <script src="script.js"></script>
-  <script>
-    // Pre-fill course from URL if available
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedCourse = urlParams.get('course');
-    if (selectedCourse) {
-      const courseSelect = document.getElementById('course');
-      courseSelect.value = selectedCourse;
-    }
-
-    // Handle registration form submission
-    const registerForm = document.getElementById('registerForm');
-    const successMessage = document.getElementById('successMessage');
-
-    if (registerForm) {
-      registerForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const course = document.getElementById('course').value;
-
-        // Save to localStorage
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        users.push({ name, email, course });
-        localStorage.setItem('users', JSON.stringify(users));
-
-        // Show success message
-        successMessage.textContent = `Registration successful for "${course}"! Redirecting...`;
-
-        // Redirect after short delay
-        setTimeout(() => {
-          window.location.replace ("index.html");
-        }, 1500); // 1.5 seconds delay
-      });
-    }
-  </script>
 </body>
 </html>

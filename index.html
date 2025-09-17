@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Community Digital & Career Skills Hub</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      // If not logged in, redirect to login page
+      if (isLoggedIn !== "true") {
+        window.location.href = "user_login.html";
+      }
+
+      // Handle logout button
+      const logoutBtn = document.getElementById("logoutBtn");
+      logoutBtn.addEventListener("click", function () {
+        localStorage.removeItem("isLoggedIn");
+        alert("You have been logged out.");
+        window.location.href = "user_login.html";
+      });
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -12,10 +30,9 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="training.html">Training</a>
-      <a href="register2.html">Register</a>
       <a href="mentorship.html">Mentorship</a>
       <a href="feedback.html">Feedback</a>
-      
+      <button id="logoutBtn" style="margin-left:20px;">Logout</button>
     </nav>
   </header>
 
